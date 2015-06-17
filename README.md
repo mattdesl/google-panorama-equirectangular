@@ -2,7 +2,9 @@
 
 [![experimental](http://badges.github.io/stability-badges/dist/experimental.svg)](http://github.com/badges/stability-badges)
 
-![2d](http://i.imgur.com/AukW6Mv.png)
+[![2d](http://i.imgur.com/AukW6Mv.png)](https://mattdesl.github.io/google-panorama-equirectangular/demo/)
+
+[webgl demo](https://mattdesl.github.io/google-panorama-equirectangular/demo/) - [source](./demo/webgl.js)
 
 Stitches Google Street View and Photo Sphere tiles into an equirectangular image. For use in the browser, with Webpack or Browserify.
 
