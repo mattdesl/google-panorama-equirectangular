@@ -21,18 +21,20 @@
     "garnish": "^2.1.3",
     "google-panorama-by-id": "^2.0.0",
     "google-panorama-by-location": "^3.0.1",
+    "internal-ip": "^1.0.1",
     "is-dom-image": "^1.0.0",
     "smokestack": "^3.3.0",
     "tap-dev-tool": "^1.3.0",
     "tape": "^4.0.0",
     "three": "^0.71.0",
     "three-orbit-viewer": "^69.3.0",
-    "uglify-js": "^2.4.23"
+    "uglify-js": "^2.4.23",
+    "webgl-context": "^2.2.0"
   },
   "scripts": {
     "test": "browserify test/index.js | smokestack | faucet",
-    "2d": "budo demo/index.js:bundle.js --live --verbose --dir demo | garnish",
-    "start": "budo demo/webgl.js:bundle.js --live --verbose --dir demo | garnish",
+    "2d": "budo demo/index.js:bundle.js --host=`internal-ip` --live --verbose --dir demo | garnish",
+    "start": "budo demo/webgl.js:bundle.js --host=`internal-ip` --live --verbose --dir demo | garnish",
     "build": "browserify demo/webgl.js | uglifyjs -cm > demo/bundle.js"
   },
   "keywords": [
