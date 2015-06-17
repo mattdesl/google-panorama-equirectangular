@@ -14,20 +14,26 @@
     "defined": "^1.0.0",
     "events": "^1.0.2",
     "img": "^1.0.0",
-    "object-assign": "^3.0.0",
-    "xhr": "^2.0.2"
+    "google-panorama-tiles": "^1.0.1"
   },
   "devDependencies": {
+    "browserify": "^10.2.4",
     "budo": "^4.0.0",
     "garnish": "^2.1.3",
-    "google-panorama-by-location": "^1.0.1",
+    "google-panorama-by-id": "^2.0.0",
+    "google-panorama-by-location": "^3.0.1",
     "is-dom-image": "^1.0.0",
     "tap-dev-tool": "^1.3.0",
-    "tape": "^4.0.0"
+    "tape": "^4.0.0",
+    "three": "^0.71.0",
+    "three-orbit-viewer": "^69.3.0",
+    "uglify-js": "^2.4.23"
   },
   "scripts": {
     "test": "node test.js",
-    "start": "budo demo/index.js:bundle.js --live --verbose --dir demo | garnish"
+    "webgl": "budo demo/webgl.js:bundle.js --live --verbose --dir demo | garnish",
+    "start": "budo demo/index.js:bundle.js --live --verbose --dir demo | garnish",
+    "build": "browserify demo/webgl.js | uglifyjs -cm > bundle.js"
   },
   "keywords": [
     "google",

@@ -2,9 +2,9 @@
 
 [![stable](http://badges.github.io/stability-badges/dist/stable.svg)](http://github.com/badges/stability-badges)
 
-Stitches Google Street View tiles into an equirectangular image. 
+Stitches Google Street View and Photo Sphere tiles into an equirectangular image.
 
-WIP
+### EXPERIMENTAL
 
 ## Usage
 
