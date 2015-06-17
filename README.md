@@ -63,6 +63,37 @@ panoData(id, function (err, result) {
 })
 ```
 
+### events
+
+#### `emitter.on('start', fn)`
+
+Called when the stitching process begins, with `data` parameter that includes the output of [google-panorama-tiles](https://github.com/Jam3/google-panorama-tiles):
+
+```js
+{
+  columns: Number,    // x tile count
+  rows: Number,       // y tile count
+  tileWidth: Number,  // tile size
+  tileHeight: Number, // tile size
+  width: Number,      // canvas size
+  height: Number      // canvas size
+}
+```
+
+#### `emitter.on('progress', fn)`
+
+Called when a new tile has been drawn to the canvas, with an `event` parameter that contains the following numbers:
+
+```{ count, total }`
+
+#### `emitter.on('not-found', fn)`
+
+Called when an image is skipped due to it not being found. The `url` is passed.
+
+#### `emitter.on('complete', fn)`
+
+Called when the stitching is complete. The resulting `canvas` is passed as the parameter.
+
 ## Also See
 
 - [google-panorama-by-id](https://github.com/Jam3/google-panorama-by-id)
@@ -71,7 +102,7 @@ panoData(id, function (err, result) {
 
 ## Credits
 
-Thanks to @thespite's prior work on [PanomNom.js](https://github.com/spite/PanomNom.js/), which was used as a reference while building out some of these modules.
+Thanks to @thespite's prior work on [PanomNom.js](https://github.com/spite/PanomNom.js/), which was used as a reference while building these modules.
 
 ## License
 
