@@ -84,7 +84,7 @@ Called when the stitching process begins, with `data` parameter that includes th
 
 Called when a new tile has been drawn to the canvas, with an `event` parameter that contains the following numbers:
 
-```{ count, total }`
+```{ count, total }```
 
 #### `emitter.on('not-found', fn)`
 
