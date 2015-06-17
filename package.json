@@ -13,8 +13,8 @@
     "async-each": "^0.1.6",
     "defined": "^1.0.0",
     "events": "^1.0.2",
-    "img": "^1.0.0",
-    "google-panorama-tiles": "^1.0.1"
+    "google-panorama-tiles": "^1.0.1",
+    "img": "^1.0.0"
   },
   "devDependencies": {
     "browserify": "^10.2.4",
