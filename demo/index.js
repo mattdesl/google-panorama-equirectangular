@@ -13,12 +13,11 @@ panorama(streetview, {
 
   var canvas = document.createElement('canvas')
   document.body.appendChild(canvas)
-  canvas.style.width = '100%'
-  equirect({
+  canvas.style['max-width'] = '100%'
+  equirect(result.id, {
     tiles: result.tiles,
     canvas: canvas,
-    id: result.id,
-    zoom: 2
+    zoom: 4
   }).on('complete', function (image) {
     console.log('Ready')
   }).on('progress', function (ev) {

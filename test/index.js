@@ -8,8 +8,7 @@ test('should get image', function (t) {
   // can use google-panorama-by-location module
   // or StreetViewService#getPanoramaByLocation
   var id = 'dXZfBMex9_L7jO2JW3FTdA'
-  equirect({
-    id: id,
+  equirect(id, {
     crossOrigin: 'Anonymous'
   }).on('complete', function (image) {
     t.equal(image instanceof HTMLCanvasElement, true, 'canvas')

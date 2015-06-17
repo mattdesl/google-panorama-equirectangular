@@ -11,7 +11,6 @@
   },
   "dependencies": {
     "async-each": "^0.1.6",
-    "defined": "^1.0.0",
     "events": "^1.0.2",
     "google-panorama-tiles": "^1.0.1",
     "img": "^1.0.0"
@@ -32,9 +31,9 @@
   },
   "scripts": {
     "test": "browserify test/index.js | smokestack | faucet",
-    "webgl": "budo demo/webgl.js:bundle.js --live --verbose --dir demo | garnish",
-    "start": "budo demo/index.js:bundle.js --live --verbose --dir demo | garnish",
-    "build": "browserify demo/webgl.js | uglifyjs -cm > bundle.js"
+    "2d": "budo demo/index.js:bundle.js --live --verbose --dir demo | garnish",
+    "start": "budo demo/webgl.js:bundle.js --live --verbose --dir demo | garnish",
+    "build": "browserify demo/webgl.js | uglifyjs -cm > demo/bundle.js"
   },
   "keywords": [
     "google",
