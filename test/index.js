@@ -21,7 +21,7 @@ test('should get image', function (t) {
     }
     t.doesNotThrow(pixels, 'crossOrigin')
 
-    setTimeout(function() {
+    setTimeout(function () {
       window.close()
     }, 500)
   }).on('not-found', function (err) {

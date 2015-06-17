@@ -3,7 +3,7 @@ var equirect = require('../')
 var panorama = require('google-panorama-by-location')
 
 var streetview = [ 51.50700703827454, -0.12791916931155356 ]
-var photosphere = [ -21.203982, -159.83700899999997 ]
+// var photosphere = [ -21.203982, -159.83700899999997 ]
 var service = new google.maps.StreetViewService()
 
 panorama(streetview, {
