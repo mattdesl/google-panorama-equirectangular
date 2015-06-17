@@ -3,6 +3,7 @@ var THREE = require('three')
 var equirect = require('../')
 var panorama = require('google-panorama-by-location')
 var createOrbitViewer = require('three-orbit-viewer')(THREE)
+var getBestZoom = require('./get-best-zoom')
 
 var preloader = document.querySelector('.preloader')
 var streetview = [ 51.50700703827454, -0.12791916931155356 ]
@@ -47,7 +48,7 @@ panorama(location, {
     tiles: result.tiles,
     canvas: canvas,
     crossOrigin: 'Anonymous',
-    zoom: 4
+    zoom: getBestZoom()
   })
     .on('complete', function (image) {
       texture.needsUpdate = true
