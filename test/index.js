@@ -20,6 +20,10 @@ test('should get image', function (t) {
       image.getContext('2d').getImageData(0, 0, 512, 512)
     }
     t.doesNotThrow(pixels, 'crossOrigin')
+
+    setTimeout(function() {
+      window.close()
+    }, 500)
   }).on('not-found', function (err) {
     console.warning(err)
   })
