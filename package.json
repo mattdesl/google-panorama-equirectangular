@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "async-each": "^0.1.6",
+    "async-image-loader": "^1.0.1",
     "events": "^1.0.2",
     "google-panorama-tiles": "^1.0.1",
     "img": "^1.0.0"
@@ -21,6 +22,7 @@
     "garnish": "^2.1.3",
     "google-panorama-by-id": "^2.0.0",
     "google-panorama-by-location": "^3.0.1",
+    "google-panorama-zoom-level": "^1.0.0",
     "internal-ip": "^1.0.1",
     "is-dom-image": "^1.0.0",
     "smokestack": "^3.3.0",
@@ -33,8 +35,9 @@
   },
   "scripts": {
     "test": "browserify test/index.js | smokestack | faucet",
-    "2d": "budo demo/index.js:bundle.js --host=`internal-ip` --live --verbose --dir demo | garnish",
-    "start": "budo demo/webgl.js:bundle.js --host=`internal-ip` --live --verbose --dir demo | garnish",
+    "2d": "budo demo/index.js:bundle.js  --live --verbose --dir demo | garnish",
+    "gpu": "budo demo/gpu.js:bundle.js --host=`internal-ip` --live --verbose --dir demo | garnish",
+    "start": "budo demo/webgl.js:bundle.js  --live --verbose --dir demo | garnish",
     "build": "browserify demo/webgl.js | uglifyjs -cm > demo/bundle.js"
   },
   "keywords": [
