@@ -20,7 +20,13 @@ npm install google-panorama-equirectangular
 
 For full examples, see the [demo/](demo/) folder, or [running from source](#running-from-source) for details.
 
-Simple example:
+Make sure to include the Google Client library first:
+
+```html
+  <script src="http://maps.google.com/maps/api/js?sensor=false"></script>
+```
+
+Then, in JavaScript:
 
 ```js
 var load = require('google-panorama-equirectangular')
