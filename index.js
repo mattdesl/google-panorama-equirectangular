@@ -31,11 +31,11 @@ function loadEquirectangular (id, opt) {
   function start () {
     emitter.emit('start', data)
     loader(images, { crossOrigin: opt.crossOrigin }, done)
-      .on('not-found', function (tile) {
-        emitter.emit('not-found', tile.url)
+      .on('not-found', function (data) {
+        emitter.emit('not-found', data.url)
       })
       .on('progress', function (ev) {
-        var tile = ev.tile
+        var tile = ev.data
         var position = tile.position || zero
         if (ev.image) {
           context.drawImage(ev.image, position[0], position[1])

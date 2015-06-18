@@ -10,7 +10,7 @@
     "url": "https://github.com/mattdesl"
   },
   "dependencies": {
-    "async-image-loader": "^1.0.1",
+    "async-image-loader": "^2.0.1",
     "events": "^1.0.2",
     "google-panorama-tiles": "^1.0.1"
   },
