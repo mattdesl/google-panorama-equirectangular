@@ -3,6 +3,8 @@ var equirect = require('../intermediate')
 var panorama = require('google-panorama-by-location')
 var THREE = require('three')
 var createOrbitViewer = require('three-orbit-viewer')(THREE)
+
+// unlike max-ram-zoom, this is based on VRAM
 var bestZoom = require('google-panorama-zoom-level')
 
 var app = createOrbitViewer({
@@ -50,8 +52,6 @@ panorama(streetview, {
   }).on('start', function (data) {
     texHeight = data.height
 
-    console.log("TOTAL SIZE", data.width, data.height)
-
     // reshape the texture initially with transparent data
     gl.bindTexture(gl.TEXTURE_2D, handle)
     gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, data.width, data.height,
@@ -68,14 +68,5 @@ panorama(streetview, {
     gl.texSubImage2D(gl.TEXTURE_2D, 0, x, y,
           gl.RGBA, gl.UNSIGNED_BYTE, ev.image)
   })
-
-  // equirect(result.id, {
-  //   tiles: result.tiles,
-  //   zoom: zoom
-  // }).on('complete', function (image) {
-  //   console.log('Ready')
-  // }).on('progress', function (ev) {
-  //   console.log(ev.count / ev.total)
-  // })
 })
 

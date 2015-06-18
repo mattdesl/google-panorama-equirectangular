@@ -5,11 +5,7 @@ var Emitter = require('events').EventEmitter
 module.exports = loadEquirectangular
 function loadEquirectangular (id, opt) {
   opt = opt || {}
-  var zoom = (typeof opt.zoom === 'number' ? opt.zoom : 1) | 0 // integer value
-  if (zoom < 0 || zoom > 5) {
-    throw new Error('zoom is out of range, must be between 0 - 5 (inclusive)')
-  }
-  var data = getTiles(id, zoom, opt.tiles)
+  var data = getTiles(id, opt.zoom, opt.tiles)
 
   var canvas = opt.canvas || document.createElement('canvas')
   var context = canvas.getContext('2d')
@@ -36,7 +32,7 @@ function loadEquirectangular (id, opt) {
     emitter.emit('start', data)
     loader(images, { crossOrigin: opt.crossOrigin }, done)
       .on('not-found', function (tile) {
-        emitter.emit('not-found', tile)
+        emitter.emit('not-found', tile.url)
       })
       .on('progress', function (ev) {
         var tile = ev.tile
