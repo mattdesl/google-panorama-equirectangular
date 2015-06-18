@@ -3,7 +3,7 @@ var THREE = require('three')
 var equirect = require('../')
 var panorama = require('google-panorama-by-location')
 var createOrbitViewer = require('three-orbit-viewer')(THREE)
-var getBestZoom = require('./get-best-zoom')
+var getBestZoom = require('./max-ram-zoom')
 
 var preloader = document.querySelector('.preloader')
 var streetview = [ 51.50700703827454, -0.12791916931155356 ]

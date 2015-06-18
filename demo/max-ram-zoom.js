@@ -1,7 +1,11 @@
 var getWebGL = require('webgl-context')
 
+// iOS is restricted to 3-5MP canvas elements in RAM
+// this is different than VRAM max texture size,
+// but we can use it for a very rough check of hardware
+// capability
+
 module.exports = function (gl) {
-  // iOS is restricted to 5MP canvases
   var maxGLSize = getMaxTextureSize(gl)
   return (maxGLSize <= 4096) ? 2 : 4
 }

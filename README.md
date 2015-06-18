@@ -8,6 +8,8 @@
 
 Stitches Google Street View and Photo Sphere tiles into an equirectangular image. For use in the browser, with Webpack or Browserify.
 
+Also includes an [intermediate mode](#intermediate-mode) for higher quality WebGL rendering on low-end devices.
+
 ## Install
 
 ```sh
@@ -82,9 +84,18 @@ Called when the stitching process begins, with `data` parameter that includes th
 
 #### `emitter.on('progress', fn)`
 
-Called when a new tile has been drawn to the canvas, with an `event` parameter that contains the following numbers:
+Called after a new tile has been loaded and drawn to the canvas.
 
-```{ count, total }```
+```js
+{
+  count: Number,    // current # of tiles loaded
+  total: Number,    // total number of tiles
+  image: Number,    // an image for this tile, might be null
+  position: [x, y], // the pixel position of the tile in the full image
+}
+```
+
+In [intermediate mode](#intermediate-mode), the `image` might be an Image or a Canvas, depending on crop.
 
 #### `emitter.on('not-found', fn)`
 
@@ -94,8 +105,25 @@ Called when an image is skipped due to it not being found. The `url` is passed.
 
 Called when the stitching is complete. The resulting `canvas` is passed as the parameter.
 
+In [intermediate mode](#intermediate-mode), no parameters are passed to the function.
+
+## Intermediate Mode
+
+The default export stitches all tiles into a single Canvas element. This is convenient, but not ideal for low-end devices like iOS Safari. In some browsers, there is a maximum size for canvas elements, and no way to query this value. 
+
+For example, in a 256MB RAM iPhone, the full canvas size must be less than `1024 * 1024 * 3` (3 MP).
+
+WebGL applications can leverage "intermediate rendering" mode which keeps no more than a single 512x512 canvas in memory at a time. This allows higher quality panoramas to be stitched on low-end devices. The interface is the same, and can be required like this:
+
+```js
+var equirect = require('google-panorama-equirectangular/intermediate')
+```
+
+You will need to stitch and upload sub-images yourself to WebGL. See [demo/gpu.js](demo/gpu.js) for an example.
+
 ## Also See
 
+- [google-panorama-zoom-level](https://github.com/Jam3/google-panorama-zoom-level)
 - [google-panorama-by-id](https://github.com/Jam3/google-panorama-by-id)
 - [google-panorama-by-location](https://github.com/Jam3/google-panorama-by-location)
 - [google-panorama-tiles](https://github.com/Jam3/google-panorama-tiles)
