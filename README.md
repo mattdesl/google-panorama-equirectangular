@@ -54,6 +54,8 @@ Creates a new StreetView stitcher with `id` and optional settings. `opt` can be:
 
 Here is an example using [google-panorama-by-id](https://github.com/Jam3/google-panorama-by-id).
 
+It's recommended you specify `tiles` for an accurate result across different image types (panorama, photo sphere, etc).
+
 ```js
 var load = require('google-panorama-equirectangular')
 var panoData = require('google-panorama-by-id')
