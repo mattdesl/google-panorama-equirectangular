@@ -18,7 +18,7 @@ npm install google-panorama-equirectangular
 
 ## Example
 
-For full examples, see the [demo/](demo/) folder. 
+For full examples, see the [demo/](demo/) folder, or [running from source](#running-from-source) for details.
 
 Simple example:
 
@@ -122,6 +122,31 @@ var equirect = require('google-panorama-equirectangular/intermediate')
 ```
 
 You will need to stitch and upload sub-images yourself to WebGL. See [demo/gpu.js](demo/gpu.js) for an example.
+
+## Running From Source
+
+To run the demos from source:
+
+```sh
+git clone https://github.com/mattdesl/google-panorama-equirectangular.git
+cd google-panorama-equirectangular
+npm install
+```
+
+Now run one of the demos:
+
+```sh
+# the simple WebGL demo
+npm run start
+
+# the simple 2D DOM demo
+npm run 2d
+
+# the GPU stitching demo
+npm run gpu
+```
+
+And open [http://localhost:9966/](http://localhost:9966/). Changing the source will re-load the browser page.
 
 ## Also See
 
