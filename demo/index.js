@@ -12,10 +12,10 @@ panorama(streetview, {
 }, function (err, result) {
   if (err) throw err
 
-  var zoom = getBestZoom()
+  var zoom = Math.max(0, Math.min(3, getBestZoom()))
   var canvas = document.createElement('canvas')
   document.body.appendChild(canvas)
-  canvas.style['max-width'] = '100%'
+  canvas.style['max-width'] = '70%'
   equirect(result.id, {
     tiles: result.tiles,
     canvas: canvas,

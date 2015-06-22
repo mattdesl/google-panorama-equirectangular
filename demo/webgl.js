@@ -1,19 +1,17 @@
 /*globals google*/
 var THREE = require('three')
 var equirect = require('../')
+var streetview = require('awesome-streetview')
 var panorama = require('google-panorama-by-location')
 var createOrbitViewer = require('three-orbit-viewer')(THREE)
 var getBestZoom = require('./max-ram-zoom')
 
 var preloader = document.querySelector('.preloader')
-var streetview = [ 51.50700703827454, -0.12791916931155356 ]
-var photosphere = [ -21.203982, -159.83700899999997 ]
-var service = new google.maps.StreetViewService()
 
 var app = createOrbitViewer({
   clearColor: 0xffffff,
   clearAlpha: 1.0,
-  fov: 50,
+  fov: 45,
   position: new THREE.Vector3(0, 0, -0.1)
 })
 
@@ -35,11 +33,14 @@ var mat = new THREE.MeshBasicMaterial({
 var sphere = new THREE.Mesh(geo, mat)
 app.scene.add(sphere)
 
+// flip the texture along X axis
+sphere.scale.x = -1
+
 // load a random panosphere / streetview
-var location = Math.random() > 0.5 ? streetview : photosphere
-panorama(location, {
-  service: service
-}, function (err, result) {
+var location = streetview()
+
+console.log('New location: %s', location.join(','))
+panorama(location, function (err, result) {
   if (err) throw err
   preloader.style.height = '4px'
 
