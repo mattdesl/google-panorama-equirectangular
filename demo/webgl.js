@@ -1,4 +1,7 @@
-/*globals google*/
+/*
+  Renders a StreetView panorama in ThreeJS.
+ */
+
 var THREE = require('three')
 var equirect = require('../')
 var streetview = require('awesome-streetview')

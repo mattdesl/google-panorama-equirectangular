@@ -1,28 +1,45 @@
 /*globals google*/
+
+/*
+  Creates an image grid where each click loads
+  a new StreetView panorama.
+ */
+
 var equirect = require('../')
 var panorama = require('google-panorama-by-location')
-var getBestZoom = require('./max-ram-zoom')
+var awesome = require('awesome-streetview')
+var events = require('dom-events')
+var shuffle = require('array-shuffle')
 
-var streetview = [ 51.50700703827454, -0.12791916931155356 ]
-// var photosphere = [ -21.203982, -159.83700899999997 ]
 var service = new google.maps.StreetViewService()
+var zoom = 1
+var locations = shuffle(awesome.locations)
+var idx = 0
+run()
 
-panorama(streetview, {
-  service: service
-}, function (err, result) {
-  if (err) throw err
+function run () {
+  var location = locations[idx++]
+  console.log(location)
+  panorama(location, {
+    service: service
+  }, function (err, result) {
+    if (err) throw err
+    var canvas = document.createElement('canvas')
+    document.body.appendChild(canvas)
 
-  var zoom = Math.max(0, Math.min(3, getBestZoom()))
-  var canvas = document.createElement('canvas')
-  document.body.appendChild(canvas)
-  canvas.style['max-width'] = '70%'
-  equirect(result.id, {
-    tiles: result.tiles,
-    canvas: canvas,
-    zoom: zoom
-  }).on('complete', function (image) {
-    console.log('Ready')
-  }).on('progress', function (ev) {
-    console.log(ev.count / ev.total)
+    canvas.className = 'gallery-item'
+    equirect(result.id, {
+      tiles: result.tiles,
+      canvas: canvas,
+      zoom: zoom
+    }).on('complete', function (image) {
+      console.log('Ready')
+    }).on('progress', function (ev) {
+      console.log(ev.count / ev.total)
+    })
+
+    events.once(window, 'click', function (ev) {
+      run()
+    })
   })
-})
+}

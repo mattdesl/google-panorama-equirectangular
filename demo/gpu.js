@@ -1,4 +1,11 @@
-/*globals google*/
+/*
+  Renders a StreetView panorama in ThreeJS.
+
+  Uses a GPU stitching algorithm to support
+  higher quality images on low-memory devices
+  (like iOS Safari).
+ */
+
 var equirect = require('../intermediate')
 var panorama = require('google-panorama-by-location')
 var THREE = require('three')
@@ -28,11 +35,8 @@ var mat = new THREE.MeshBasicMaterial({
 var sphere = new THREE.Mesh(geo, mat)
 
 var streetview = [ 51.50700703827454, -0.12791916931155356 ]
-var service = new google.maps.StreetViewService()
 
-panorama(streetview, {
-  service: service
-}, function (err, result) {
+panorama(streetview, function (err, result) {
   if (err) throw err
   var renderer = app.renderer
 
@@ -69,4 +73,3 @@ panorama(streetview, {
           gl.RGBA, gl.UNSIGNED_BYTE, ev.image)
   })
 })
-
