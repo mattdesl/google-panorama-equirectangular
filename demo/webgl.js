@@ -1,19 +1,18 @@
-/*globals google*/
+/*
+  Renders a StreetView panorama in ThreeJS.
+ */
+
 var THREE = require('three')
 var equirect = require('../')
+var streetview = require('awesome-streetview')
 var panorama = require('google-panorama-by-location')
 var createOrbitViewer = require('three-orbit-viewer')(THREE)
 var getBestZoom = require('./max-ram-zoom')
 
-var preloader = document.querySelector('.preloader')
-var streetview = [ 51.50700703827454, -0.12791916931155356 ]
-var photosphere = [ -21.203982, -159.83700899999997 ]
-var service = new google.maps.StreetViewService()
-
 var app = createOrbitViewer({
   clearColor: 0xffffff,
   clearAlpha: 1.0,
-  fov: 50,
+  fov: 45,
   position: new THREE.Vector3(0, 0, -0.1)
 })
 
@@ -35,13 +34,13 @@ var mat = new THREE.MeshBasicMaterial({
 var sphere = new THREE.Mesh(geo, mat)
 app.scene.add(sphere)
 
-// load a random panosphere / streetview
-var location = Math.random() > 0.5 ? streetview : photosphere
-panorama(location, {
-  service: service
-}, function (err, result) {
+// flip the texture along X axis
+sphere.scale.x = -1
+
+// a street view in Tokyo
+var location = [35.659607, 139.700378]
+panorama(location, function (err, result) {
   if (err) throw err
-  preloader.style.height = '4px'
 
   // load the equirectangular image
   equirect(result.id, {
@@ -52,10 +51,8 @@ panorama(location, {
   })
     .on('complete', function (image) {
       texture.needsUpdate = true
-      preloader.style.height = '0'
     })
     .on('progress', function (ev) {
       texture.needsUpdate = true
-      preloader.style.width = ((ev.count / ev.total).toFixed(1) * 100) + '%'
     })
 })

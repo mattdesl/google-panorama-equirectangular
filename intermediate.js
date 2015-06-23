@@ -7,7 +7,7 @@ function loadEquirectangular (id, opt) {
   opt = opt || {}
   var data = getTiles(id, opt.zoom, opt.tiles)
 
-  var canvas = document.createElement('canvas')
+  var canvas = opt.canvas || document.createElement('canvas')
   var context = canvas.getContext('2d')
   var emitter = new Emitter()
   var images = data.images
@@ -25,11 +25,11 @@ function loadEquirectangular (id, opt) {
   function start () {
     emitter.emit('start', data)
     loader(images, { crossOrigin: opt.crossOrigin }, done)
-      .on('not-found', function (tile) {
-        emitter.emit('not-found', tile.url)
+      .on('not-found', function (data) {
+        emitter.emit('not-found', data.url)
       })
       .on('progress', function (ev) {
-        var tile = ev.tile
+        var tile = ev.data
         var position = tile.position || zero
         var x = position[0]
         var y = position[1]

@@ -4,7 +4,7 @@
 
 [![2d](http://i.imgur.com/AukW6Mv.png)](http://mattdesl.github.io/google-panorama-equirectangular/demo/)
 
-[webgl demo](http://mattdesl.github.io/google-panorama-equirectangular/demo/) - [source](./demo/webgl.js)
+[webgl demo](http://mattdesl.github.io/google-panorama-equirectangular/demo/) - [source](./demo/gpu.js)
 
 Stitches Google Street View and Photo Sphere tiles into an equirectangular image. For use in the browser, with Webpack or Browserify.
 
@@ -18,9 +18,15 @@ npm install google-panorama-equirectangular
 
 ## Example
 
-For full examples, see the [demo/](demo/) folder. 
+For full examples, see the [demo/](demo/) folder, or [running from source](#running-from-source) for details.
 
-Simple example:
+Make sure to include the Google Client library first:
+
+```html
+  <script src="http://maps.google.com/maps/api/js?sensor=false"></script>
+```
+
+Then, in JavaScript:
 
 ```js
 var load = require('google-panorama-equirectangular')
@@ -53,6 +59,8 @@ Creates a new StreetView stitcher with `id` and optional settings. `opt` can be:
 - `crossOrigin` crossOrigin String for image loading, defaults to `undefined`
 
 Here is an example using [google-panorama-by-id](https://github.com/Jam3/google-panorama-by-id).
+
+It's recommended you specify `tiles` for an accurate result across different image types (panorama, photo sphere, etc).
 
 ```js
 var load = require('google-panorama-equirectangular')
@@ -120,6 +128,31 @@ var equirect = require('google-panorama-equirectangular/intermediate')
 ```
 
 You will need to stitch and upload sub-images yourself to WebGL. See [demo/gpu.js](demo/gpu.js) for an example.
+
+## Running From Source
+
+To run the demos from source:
+
+```sh
+git clone https://github.com/mattdesl/google-panorama-equirectangular.git
+cd google-panorama-equirectangular
+npm install
+```
+
+Now run one of the demos:
+
+```sh
+# the simple WebGL demo
+npm run webgl
+
+# the simple 2D DOM demo
+npm run 2d
+
+# the GPU stitching demo
+npm run gpu
+```
+
+And open [http://localhost:9966/](http://localhost:9966/). Changing the source will re-load the browser page.
 
 ## Also See
 

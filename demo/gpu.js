@@ -1,11 +1,20 @@
-/*globals google*/
+/*
+  Renders a StreetView panorama in ThreeJS.
+
+  Uses a GPU stitching algorithm to support
+  higher quality images on low-memory devices
+  (like iOS Safari).
+ */
+
 var equirect = require('../intermediate')
 var panorama = require('google-panorama-by-location')
+var awesome = require('awesome-streetview')
 var THREE = require('three')
 var createOrbitViewer = require('three-orbit-viewer')(THREE)
 
 // unlike max-ram-zoom, this is based on VRAM
 var bestZoom = require('google-panorama-zoom-level')
+var preloader = document.querySelector('.preloader')
 
 var app = createOrbitViewer({
   clearColor: 0xffffff,
@@ -26,13 +35,11 @@ var mat = new THREE.MeshBasicMaterial({
   side: THREE.DoubleSide
 })
 var sphere = new THREE.Mesh(geo, mat)
+sphere.scale.x = -1
 
-var streetview = [ 51.50700703827454, -0.12791916931155356 ]
-var service = new google.maps.StreetViewService()
-
-panorama(streetview, {
-  service: service
-}, function (err, result) {
+var location = awesome()
+console.log('Location: %s', location.join(', '))
+panorama(location, function (err, result) {
   if (err) throw err
   var renderer = app.renderer
 
@@ -67,6 +74,13 @@ panorama(streetview, {
     gl.bindTexture(gl.TEXTURE_2D, handle)
     gl.texSubImage2D(gl.TEXTURE_2D, 0, x, y,
           gl.RGBA, gl.UNSIGNED_BYTE, ev.image)
+
+    setProgress(ev.count / ev.total)
+  }).on('complete', function () {
+    preloader.style.height = '0'
   })
 })
 
+function setProgress(val) {
+  preloader.style.width = Math.round(val.toFixed(1) * 100) + '%'
+}
