@@ -160,6 +160,7 @@ And open [http://localhost:9966/](http://localhost:9966/). Changing the source w
 - [google-panorama-by-id](https://github.com/Jam3/google-panorama-by-id)
 - [google-panorama-by-location](https://github.com/Jam3/google-panorama-by-location)
 - [google-panorama-tiles](https://github.com/Jam3/google-panorama-tiles)
+- [awesome-streetview](https://github.com/Jam3/awesome-streetview)
 
 ## Credits
 
