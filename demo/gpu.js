@@ -19,7 +19,7 @@ var preloader = document.querySelector('.preloader')
 var app = createOrbitViewer({
   clearColor: 0xffffff,
   clearAlpha: 1.0,
-  fov: 50,
+  fov: 70,
   position: new THREE.Vector3(0, 0, -0.1)
 })
 
