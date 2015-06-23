@@ -59,6 +59,9 @@ panorama(location, function (err, result) {
   }).on('start', function (data) {
     texHeight = data.height
 
+    // this looks pretty nice with our data set
+    sphere.rotation.y = Math.PI/2 - 0.5
+
     // reshape the texture initially with transparent data
     gl.bindTexture(gl.TEXTURE_2D, handle)
     gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, data.width, data.height,
