@@ -4,7 +4,7 @@
 
 [![2d](http://i.imgur.com/AukW6Mv.png)](http://mattdesl.github.io/google-panorama-equirectangular/demo/)
 
-[webgl demo](http://mattdesl.github.io/google-panorama-equirectangular/demo/) - [source](./demo/webgl.js)
+[webgl demo](http://mattdesl.github.io/google-panorama-equirectangular/demo/) - [source](./demo/gpu.js)
 
 Stitches Google Street View and Photo Sphere tiles into an equirectangular image. For use in the browser, with Webpack or Browserify.
 
@@ -143,7 +143,7 @@ Now run one of the demos:
 
 ```sh
 # the simple WebGL demo
-npm run start
+npm run webgl
 
 # the simple 2D DOM demo
 npm run 2d

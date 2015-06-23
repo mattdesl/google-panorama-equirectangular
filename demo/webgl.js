@@ -9,8 +9,6 @@ var panorama = require('google-panorama-by-location')
 var createOrbitViewer = require('three-orbit-viewer')(THREE)
 var getBestZoom = require('./max-ram-zoom')
 
-var preloader = document.querySelector('.preloader')
-
 var app = createOrbitViewer({
   clearColor: 0xffffff,
   clearAlpha: 1.0,
@@ -39,13 +37,10 @@ app.scene.add(sphere)
 // flip the texture along X axis
 sphere.scale.x = -1
 
-// load a random panosphere / streetview
-var location = streetview()
-
-console.log('New location: %s', location.join(','))
+// a street view in Tokyo
+var location = [35.659607, 139.700378]
 panorama(location, function (err, result) {
   if (err) throw err
-  preloader.style.height = '4px'
 
   // load the equirectangular image
   equirect(result.id, {
@@ -56,10 +51,8 @@ panorama(location, function (err, result) {
   })
     .on('complete', function (image) {
       texture.needsUpdate = true
-      preloader.style.height = '0'
     })
     .on('progress', function (ev) {
       texture.needsUpdate = true
-      preloader.style.width = ((ev.count / ev.total).toFixed(1) * 100) + '%'
     })
 })

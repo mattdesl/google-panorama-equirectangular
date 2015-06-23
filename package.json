@@ -16,7 +16,7 @@
   },
   "devDependencies": {
     "array-shuffle": "^1.0.0",
-    "awesome-streetview": "^1.1.0",
+    "awesome-streetview": "^1.1.3",
     "browserify": "^10.2.4",
     "budo": "^4.0.0",
     "dom-events": "^0.1.1",
@@ -34,10 +34,10 @@
   },
   "scripts": {
     "test": "browserify test/index.js | smokestack | faucet",
-    "2d": "budo demo/index.js:bundle.js  --live --verbose --dir demo | garnish",
+    "2d": "budo demo/2d.js:bundle.js  --live --verbose --dir demo | garnish",
     "gpu": "budo demo/gpu.js:bundle.js --live --dir demo | garnish",
-    "start": "budo demo/webgl.js:bundle.js  --live --verbose --dir demo | garnish",
-    "build": "browserify demo/webgl.js | uglifyjs -cm > demo/bundle.js"
+    "webgl": "budo demo/webgl.js:bundle.js  --live --verbose --dir demo | garnish",
+    "build": "browserify demo/gpu.js | uglifyjs -cm > demo/bundle.js"
   },
   "keywords": [
     "google",
