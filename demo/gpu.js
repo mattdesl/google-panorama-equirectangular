@@ -6,6 +6,7 @@
   (like iOS Safari).
  */
 
+var url = require('url')
 var equirect = require('../intermediate')
 var panorama = require('google-panorama-by-location')
 var awesome = require('awesome-streetview')
@@ -38,6 +39,14 @@ var sphere = new THREE.Mesh(geo, mat)
 sphere.scale.x = -1
 
 var location = awesome()
+
+// allow deep-linking into a location :) 
+var hash = url.parse(window.location.href).hash
+var match = /^\#([0-9\-\.]+)\,([0-9\-\.]+)$/.exec(hash || '')
+if (match) {
+  location = [ parseFloat(match[1]), parseFloat(match[2]) ]
+}
+
 console.log('Location: %s', location.join(', '))
 panorama(location, function (err, result) {
   if (err) throw err
