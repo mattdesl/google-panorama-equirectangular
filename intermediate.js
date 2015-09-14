@@ -19,7 +19,11 @@ function loadEquirectangular (id, opt) {
   return emitter
 
   function done () {
-    emitter.emit('complete')
+    emitter.emit('complete', canvas)
+    
+    // ensure these will get collected quickly
+    canvas = null
+    context = null
   }
 
   function start () {
@@ -56,7 +60,8 @@ function loadEquirectangular (id, opt) {
           count: ev.count,
           total: ev.total,
           position: position,
-          image: image
+          image: image,
+          originalImage: ev.image
         })
       })
   }
