@@ -98,7 +98,7 @@ Called after a new tile has been loaded and drawn to the canvas.
 {
   count: Number,    // current # of tiles loaded
   total: Number,    // total number of tiles
-  image: Number,    // an image for this tile, might be null
+  image: Image,     // an image for this tile, might be null
   position: [x, y], // the pixel position of the tile in the full image
 }
 ```
@@ -113,7 +113,7 @@ Called when an image is skipped due to it not being found. The `url` is passed.
 
 Called when the stitching is complete. The resulting `canvas` is passed as the parameter.
 
-In [intermediate mode](#intermediate-mode), no parameters are passed to the function.
+In [intermediate mode](#intermediate-mode), the passed `canvas` is the one used during cropping.
 
 ## Intermediate Mode
 
@@ -127,7 +127,19 @@ WebGL applications can leverage "intermediate rendering" mode which keeps no mor
 var equirect = require('google-panorama-equirectangular/intermediate')
 ```
 
-You will need to stitch and upload sub-images yourself to WebGL. See [demo/gpu.js](demo/gpu.js) for an example.
+Each `'progress'` event simply returned a cropped image for that tile. You will need to stitch and upload sub-images yourself to WebGL. See [demo/gpu.js](demo/gpu.js) for an example.
+
+In intermediate mode, the `imgage` field of `'progress'` events might be a canvas or image, depending on whether a crop was necessary. The `originalImage` is provided to allow access to the HTMLImageElement, so the event data is:
+
+```js
+{
+  count: Number,
+  total: Number,
+  image: Canvas|Image,
+  position: [x, y],
+  originalImage: Image
+}
+```
 
 ## Running From Source
 

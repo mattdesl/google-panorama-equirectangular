@@ -1,6 +1,6 @@
 {
   "name": "google-panorama-equirectangular",
-  "version": "1.1.4",
+  "version": "1.2.0",
   "description": "gets equirectangular images from Google StreetView",
   "main": "index.js",
   "license": "MIT",
@@ -12,7 +12,8 @@
   "dependencies": {
     "async-image-loader": "^2.0.1",
     "events": "^1.0.2",
-    "google-panorama-tiles": "^1.0.1"
+    "google-panorama-tiles": "^1.0.1",
+    "google-panorama-url": "^1.0.0"
   },
   "devDependencies": {
     "array-shuffle": "^1.0.0",

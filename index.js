@@ -26,6 +26,10 @@ function loadEquirectangular (id, opt) {
 
   function done () {
     emitter.emit('complete', canvas)
+
+    // ensure these will get collected quickly
+    canvas = null
+    context = null
   }
 
   function start () {
