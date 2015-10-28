@@ -66,7 +66,10 @@ function start () {
 
 function load (location) {
   console.log('Location: %s', location.join(', '))
-  panorama(location, function (err, result) {
+  panorama(location, {
+    source: google.maps.StreetViewSource.DEFAULT,
+    preference: google.maps.StreetViewPreference.NEAREST
+  }, function (err, result) {
     if (err) throw err
     var renderer = app.renderer
 
