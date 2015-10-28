@@ -23,7 +23,7 @@ For full examples, see the [demo/](demo/) folder, or [running from source](#runn
 Make sure to include the Google Client library first:
 
 ```html
-  <script src="http://maps.google.com/maps/api/js?sensor=false"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?v=3.21"></script>
 ```
 
 Then, in JavaScript:
