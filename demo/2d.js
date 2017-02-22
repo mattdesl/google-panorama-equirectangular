@@ -32,13 +32,13 @@ function run () {
       tiles: result.tiles,
       canvas: canvas,
       zoom: zoom
-    }).on('complete', function (image) {
-      console.log('Ready')
+    }).on('complete', function (image, info) {
+      console.log('Ready', info)
     }).on('progress', function (ev) {
       console.log(ev.count / ev.total)
     })
 
-    events.once(window, 'click', function (ev) {
+    events.once(window, 'click', function () {
       run()
     })
   })

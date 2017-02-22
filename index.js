@@ -1,11 +1,11 @@
-var getTiles = require('./lib/image-tiles')
+var getPanoramaTiles = require('./lib/getPanoramaTiles')
 var loader = require('async-image-loader')
 var Emitter = require('events').EventEmitter
 
 module.exports = loadEquirectangular
 function loadEquirectangular (id, opt) {
   opt = opt || {}
-  var data = getTiles(id, opt.zoom, opt.tiles)
+  var data = getPanoramaTiles(id, opt)
 
   var canvas = opt.canvas || document.createElement('canvas')
   var context = canvas.getContext('2d')
