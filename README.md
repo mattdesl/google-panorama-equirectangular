@@ -57,6 +57,7 @@ Creates a new StreetView stitcher with `id` and optional settings. `opt` can be:
 - `canvas` a HTMLCanvasElement to re-use, defaults to creating a new element
 - `tiles` is the tile dimensions from `getPanoramaByLocation` or `getPanoramaById`, defaults to assuming StreetView image dimensions
 - `crossOrigin` crossOrigin String for image loading, defaults to `undefined`
+- `width` some new StreetView IDs can be fetched by size; if the ID falls into this category, the returned image will ignore the `zoom` parameter and instead try to find something by `width*(width / 2)` dimensions
 
 Here is an example using [google-panorama-by-id](https://github.com/Jam3/google-panorama-by-id).
 
@@ -86,7 +87,8 @@ Called when the stitching process begins, with `data` parameter that includes th
   tileWidth: Number,  // tile size
   tileHeight: Number, // tile size
   width: Number,      // canvas size
-  height: Number      // canvas size
+  height: Number,     // canvas size
+  legacy: Boolean     // false if this is from the new API
 }
 ```
 

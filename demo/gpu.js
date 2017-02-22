@@ -85,6 +85,7 @@ function load (location) {
     preloader.style.height = '6px'
     equirect(result.id, {
       zoom: zoom,
+      width: 2048, // for photospheres
       tiles: result.tiles,
       crossOrigin: 'Anonymous'
     }).on('start', function (data) {
