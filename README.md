@@ -58,6 +58,7 @@ Creates a new StreetView stitcher with `id` and optional settings. `opt` can be:
 - `tiles` is the tile dimensions from `getPanoramaByLocation` or `getPanoramaById`, defaults to assuming StreetView image dimensions
 - `crossOrigin` crossOrigin String for image loading, defaults to `undefined`
 - `width` some new StreetView IDs can be fetched by size; if the ID falls into this category, the returned image will ignore the `zoom` parameter and instead try to find something by `width*(width / 2)` dimensions
+- `protocol` the protocol to use when requesting images; defaults to undefined which will load a protocol-relative URL (`//foo.com/`) but you can specify an exact protocol if desired (which may be necessary in some environments like CocoonJS), such as `'http'` or `'https'`
 
 Here is an example using [google-panorama-by-id](https://github.com/Jam3/google-panorama-by-id).
 
